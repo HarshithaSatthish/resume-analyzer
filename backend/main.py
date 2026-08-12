@@ -21,8 +21,8 @@ app = FastAPI(
     title=settings.app_name,
     description="Production-ready AI Resume Analyzer API with ATS scoring, skill extraction, and Gemini insights.",
     version="1.0.0",
-    docs_url=None if settings.is_production else "/docs",
-    redoc_url=None if settings.is_production else "/redoc",
+    docs_url="/docs",
+    redoc_url="/redoc",
     lifespan=lifespan,
 )
 
