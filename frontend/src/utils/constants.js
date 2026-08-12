@@ -1,4 +1,21 @@
-export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const PRODUCTION_API_URL = 'https://resume-analyzer-api-23f3.onrender.com/api';
+const LOCAL_API_URL = 'http://localhost:8000/api';
+
+function resolveApiUrl() {
+  const envUrl = import.meta.env.VITE_API_URL;
+
+  if (envUrl && !envUrl.includes('your-render-service')) {
+    return envUrl;
+  }
+
+  if (typeof window !== 'undefined' && window.location.hostname.endsWith('.vercel.app')) {
+    return PRODUCTION_API_URL;
+  }
+
+  return envUrl || LOCAL_API_URL;
+}
+
+export const API_URL = resolveApiUrl();
 
 export const MAX_FILE_SIZE_MB = 5;
 export const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
