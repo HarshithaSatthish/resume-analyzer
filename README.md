@@ -65,7 +65,9 @@ App: http://localhost:5173
 
 ## Deployment
 
-### Overview
+See **[DEPLOYMENT.md](DEPLOYMENT.md)** for the full step-by-step guide (MongoDB Atlas → GitHub → Render → Vercel).
+
+Quick overview:
 
 ```
 ┌─────────────┐     HTTPS      ┌──────────────┐     HTTPS      ┌────────────────┐
