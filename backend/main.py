@@ -26,13 +26,19 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.cors_origins_list,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+_cors_kwargs = {
+    "allow_credentials": True,
+    "allow_methods": ["*"],
+    "allow_headers": ["*"],
+}
+
+if settings.is_production:
+    _cors_kwargs["allow_origins"] = settings.cors_origins_list
+    _cors_kwargs["allow_origin_regex"] = r"https://.*\.vercel\.app"
+else:
+    _cors_kwargs["allow_origins"] = settings.cors_origins_list
+
+app.add_middleware(CORSMiddleware, **_cors_kwargs)
 
 register_exception_handlers(app)
 app.include_router(api_router, prefix="/api")

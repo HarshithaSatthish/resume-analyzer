@@ -30,7 +30,7 @@ services:
       - key: GEMINI_MODEL
         value: gemini-1.5-flash
       - key: CORS_ORIGINS
-        sync: false
+        value: https://resume-analyzer-three-tau.vercel.app
       - key: UPLOAD_DIR
         value: uploads
       - key: REPORTS_DIR
